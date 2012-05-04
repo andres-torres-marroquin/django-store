@@ -1,0 +1,24 @@
+# Python
+*.pyc
+
+# Database
+db.sqlite3
+
+# Virtualenv
+/bin
+/include
+/build
+/lib
+/lib64
+/src
+/share
+/man
+.Python
+
+# Eclipse/Aptana/PyDev
+.project
+.pydevproject
+
+# Misc
+.DS_Store
+tags
