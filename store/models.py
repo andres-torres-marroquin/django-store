@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 ENABLED_DISABLED_STATUSES = (
@@ -94,3 +95,12 @@ class Language(models.Model):
     code = models.CharField(max_length=5)
     sort_order = models.IntegerField(default=0)
     status = models.BooleanField(default=True, choices=ENABLED_DISABLED_STATUSES)
+
+
+# User model monkey patching
+def get_store_profile(user):
+    if not hasattr(user, '_store_profile_cache'):
+        profile, created = Customer.objects.get_or_create(user=user)
+        user._store_profile_cache = profile
+    return user._store_profile_cache
+User.get_store_profile = get_store_profile
