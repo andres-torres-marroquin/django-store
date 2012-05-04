@@ -7,7 +7,14 @@ ENABLED_DISABLED_STATUSES = (
 
 
 class Address(models.Model):
-    pass
+    customer = models.ForeignKey('Customer', related_name='addresses')
+    first_name = models.CharField(max_length=30, null=True, blank=True)
+    last_name = models.CharField(max_length=30, null=True, blank=True)
+    address_1 = models.CharField(max_length=128)
+    address_2 = models.CharField(max_length=128)
+    city = models.CharField(max_length=128)
+    zip_code = models.CharField(max_length=10)
+    #country = models.ForeignKey('Country')
 
 
 class Customer(models.Model):
