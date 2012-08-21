@@ -97,6 +97,16 @@ class Language(models.Model):
     status = models.BooleanField(default=True, choices=ENABLED_DISABLED_STATUSES)
 
 
+class Currency(models.Model):
+    name = models.CharField(max_length=50)
+    code = models.CharField(max_length=3)
+    symbol_left = models.CharField(max_length=12)
+    symbol_right = models.CharField(max_length=12)
+    decimal_place = models.IntegerField()
+    value = models.DecimalField()
+    status = models.BooleanField()
+    date_modified = models.DateTimeField()
+
 # User model monkey patching
 def get_store_profile(user):
     if not hasattr(user, '_store_profile_cache'):
