@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 from django.db import models
 
 ENABLED_DISABLED_STATUSES = (
@@ -7,7 +7,16 @@ ENABLED_DISABLED_STATUSES = (
 )
 
 
-class Address(models.Model):
+class Manufacturer(models.Model):
+    name = models.CharField(max_length=64)
+    sort_order = models.IntegerField(default=0)
+    image = models.ImageField(upload_to='product_images/')
+
+    def __unicode__(self):
+        return self.name
+
+
+"""class Address(models.Model):
     customer = models.ForeignKey('Customer', related_name='addresses')
     first_name = models.CharField(max_length=30, null=True, blank=True)
     last_name = models.CharField(max_length=30, null=True, blank=True)
@@ -114,3 +123,4 @@ def get_store_profile(user):
         user._store_profile_cache = profile
     return user._store_profile_cache
 User.get_store_profile = get_store_profile
+"""
